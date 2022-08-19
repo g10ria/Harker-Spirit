@@ -4,9 +4,9 @@ Harker Spirit was a spirit points dashboard I wrote for my high school during vi
 # Running
 ```
 $ npm i
-$ npm run debug // nodemon build/index.js
+$ npm run build
+$ npm run debug // AKA nodemon build/index.js
 ```
-Note: need file `config/config.dev.ts` to run.
 
 # Dev credentials
 |          | Regular | Admin | Rejected auth |

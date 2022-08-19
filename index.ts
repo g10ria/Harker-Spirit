@@ -140,7 +140,6 @@ router.get('/', requireAuth, async (ctx, next) => {
         await ctx.render('pages/spirit', spiritPageData);
     } catch (e) {
         console.log(e);
-        // todo: sentry
     }
 });
 

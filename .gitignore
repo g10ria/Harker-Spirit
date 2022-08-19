@@ -19,7 +19,6 @@ build/
 *.css.map
 
 # Sensitive credentials
-config/config.dev.ts
 config/config.production.ts
 
 # Coverage reports

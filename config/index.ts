@@ -1,4 +1,4 @@
-import prod from './config.production';
+// import prod from './config.production';
 import dev from './config.dev';
 
 export interface Config {
