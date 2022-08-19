@@ -1,0 +1,103 @@
+body {
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+body #content {
+  margin: 50px 65px;
+}
+
+.header {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+.section {
+  background-color: #F3F3F3;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 50px;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 1024px) {
+  .col {
+    width: 100%;
+  }
+}
+
+.col.nine {
+  -webkit-box-flex: 0.75;
+      -ms-flex-positive: 0.75;
+          flex-grow: 0.75;
+}
+
+.col.eight {
+  -webkit-box-flex: 0.667;
+      -ms-flex-positive: 0.667;
+          flex-grow: 0.667;
+}
+
+.col.six {
+  -webkit-box-flex: 0.5;
+      -ms-flex-positive: 0.5;
+          flex-grow: 0.5;
+}
+
+.col.four {
+  -webkit-box-flex: 0.333;
+      -ms-flex-positive: 0.333;
+          flex-grow: 0.333;
+}
+
+.col.three {
+  -webkit-box-flex: 0.25;
+      -ms-flex-positive: 0.25;
+          flex-grow: 0.25;
+}
+
+.col.two {
+  -webkit-box-flex: .0667;
+      -ms-flex-positive: .0667;
+          flex-grow: .0667;
+}
+
+@media (min-width: 1025px) {
+  .col.left {
+    margin-right: 50px;
+  }
+}
+
+.row.top {
+  margin-bottom: 50px;
+}
+/*# sourceMappingURL=main.css.map */

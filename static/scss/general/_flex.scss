@@ -1,0 +1,90 @@
+@import 'main';
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.col {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+
+.major {
+    @include breakpoint('notlg') {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+}
+
+.justifyMid {
+    justify-content: center;
+}
+
+.justifyLeft {
+    justify-content: flex-start;
+}
+
+.alignMid {
+    align-items: center;
+}
+
+// 12 point grid system (whatever lol)
+.max {
+    flex-grow: 1;
+}
+
+.eleven {
+    flex-grow: .917;
+}
+
+.ten {
+    flex-grow: .833;
+}
+
+.nine {
+    flex-grow: 0.75
+}
+
+.eight {
+    flex-grow: 0.667
+}
+
+.six {
+    flex-grow: 0.5;
+}
+
+.four {
+    flex-grow: 0.333;
+}
+
+.three {
+    flex-grow: 0.25;
+}
+
+.two {
+    flex-grow: .1667;
+}
+
+.one {
+    flex-grow: .0833;
+}
+
+@include breakpoint('lgonly') {
+    .left {
+        margin-right: 50px;
+    }
+}
+
+.top {
+    margin-bottom: 50px;
+}
+
+@include breakpoint('smonly') {
+    .max-sm {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}

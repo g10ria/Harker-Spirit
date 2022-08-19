@@ -1,0 +1,199 @@
+// BREAKPOINTS (PARTLY STOLEN FROM ORBYT :D) -----------------
+$onePixel: 1px;
+$lowerBreak: 600px;
+$upperBreak: 1024px;
+// these are alwahys inclusive at the lower boundary and exclusive at the upper boundary
+@mixin breakpoint($class) {
+    @if $class==smonly {
+        @media (max-width: $lowerBreak) {
+            @content;
+        }
+    }
+    @else if $class==notlg {
+        @media (max-width: $upperBreak) {
+            @content;
+        }
+    }
+    @else if $class==mdonly {
+        @media (min-width: $lowerBreak + $onePixel) and (max-width: $upperBreak) {
+            @content;
+        }
+    }
+    @else if $class==lgonly {
+        @media (min-width: $upperBreak + $onePixel) {
+            @content;
+        }
+    }
+    @else if $class==notsm {
+        @media (min-width: $lowerBreak + $onePixel) {
+            @content;
+        }
+    }
+    @else {
+        @warn "Breakpoint mixin supports: smonly, mdonly, lgonly, notsm, notlg";
+    }
+}
+
+// Misc
+$dev-green: #71B778;
+$dark-green: rgb(91, 156, 98);
+$error: #f44336;
+// grays
+$white: white;
+$light-gray: #F3F3F3;
+$lighter-gray: #FAFAFA;
+$gray: #E5E5E5;
+$darkish-gray: #D6D6D6;
+$dark-gray: #A5A5A5;
+$darker-gray: #7E7E7E;
+$black: black;
+// app colors
+$aqua: #26C6DA;
+$salmon: #E57373;
+$lime: #DCE775;
+// class colors
+$c-green: #205C26;
+$c-white: #ffffff;
+$c-yellow: #F2E56C;
+$c-black: #585858;
+// typography
+@mixin lexend {
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+@mixin roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+@mixin header1 {
+    @include lexend;
+    font-size: 1.25rem;
+}
+
+@mixin header2 {
+    @include lexend;
+    font-size: 1.1rem;
+}
+
+@mixin body1 {
+    font-size: 1rem;
+}
+
+@mixin body2 {
+    font-size: 0.9rem;
+}
+
+@mixin body3 {
+    font-size: 0.8rem;
+}
+
+body {
+    @include body1;
+    @include roboto;
+    #content {
+        margin: 50px 65px;
+        @include breakpoint('mdonly') {
+            margin: 40px 30px;
+        }
+        @include breakpoint('smonly') {
+            margin: 30px 15px;
+        }
+    }
+}
+
+.header {
+    @include header1;
+    margin-bottom: 30px;
+}
+
+.header2 {
+    @include header2;
+}
+
+.section {
+    background-color: $light-gray;
+    box-sizing: border-box;
+    padding: 25px;
+}
+
+#madewith {
+    @include lexend;
+    @include body2;
+    color: $darker-gray;
+    a {
+        color: $darker-gray;
+    }
+}
+
+button {
+    @include lexend;
+    @include body1;
+    padding: 8px 24px;
+    border: none;
+    outline: none;
+    background-color: $gray;
+    cursor: pointer;
+    margin: 3px;
+    border-radius: 3px;
+    &:hover {
+        background-color: $darkish-gray;
+    }
+}
+
+#logout,
+.cancel {
+    color: $dev-green;
+    cursor: pointer;
+    text-decoration: underline;
+    height: min-content;
+    &:hover {
+        color: $dark-green;
+    }
+}
+
+#sub {
+    margin-bottom: 18px;
+}
+
+a {
+    color: $dev-green;
+    &:hover {
+        color: $dark-green;
+    }
+}
+
+#snackbar-container {
+    z-index: 5;
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    opacity: 0.85;
+    transition: bottom .2s;
+    &.hidden {
+        bottom: -100px;
+    }
+    &.success {
+        background-color: $dev-green;
+    }
+    &.error {
+        background-color: $error;
+    }
+    #snackbar {
+        text-align: center;
+        padding: 12px 18px;
+        color: white;
+    }
+}
+
+label {
+    margin-right: 5px;
+}
+
+input,
+select {
+    outline: none;
+    border: 1px solid $gray;
+    padding: 5px;
+    border-radius: 3px;
+}

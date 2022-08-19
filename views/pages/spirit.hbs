@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <link href="{{path}}/css/spirit.css" rel="stylesheet">
+
+    <script src="{{path}}/js/sidebar.js" defer></script>
+    <script src="{{path}}/js/barGraph.js" defer></script>
+    <script src="{{path}}/js/tabOptions.js" defer></script>
+    <script src="{{path}}/js/listItems.js" defer></script>
+</head>
+
+<body>
+    {{> snackbar}}
+    
+    <div id="content" class="column">
+        <div class="row" id="top">
+            <div class="header">Harker Spirit {{yearframe}}</div>
+            <div id="logout">Logout</div>
+        </div>
+
+        <script>
+            // lmao
+            if ({{isAdmin}} && !{{archive}}) {
+                const sub = cr('div');
+                sub.id = 'sub';
+                sub.classList.add('row');
+
+                const a = cr('a');
+                a.href='/admin';
+                a.innerHTML = 'Admin dashboard';
+
+                sub.appendChild(a);
+
+                document.querySelector('#content').appendChild(sub);
+            }
+        </script>
+
+        <div class="row justifyLeft">
+
+            <div class="col left eleven major justifyLeft">
+                <div class="col section top">
+
+                    {{#each spiritData}}
+
+                        <div class="row bar-container alignMid">
+                            
+                            <div class="max-sm">
+                                <div class="row justifyLeft alignMid">
+                                    <div class="bar-label" style="background-color: {{classColor}}"></div>
+                                    <div class="bar-title">{{classYear}}</div>
+                                    <div class="bar-number">{{totalPoints}}</div>
+                                </div>
+                            </div>
+
+                            <div class="row max bar-content justifyLeft max-sm">
+
+                                {{#each points}}
+                                    <div class="bar-chunk" data-id="{{eventId}}" style="{{styleString}}">
+                                        <div class="tooltip-container">
+                                            <span class="tooltip">
+                                                {{eventName}}: {{rankingString}} - {{numPoints}} points
+                                            </span>
+                                        </div>
+                                    </div>
+                                {{/each}}
+
+                            </div>
+                        </div>
+
+                    {{/each}}
+
+                </div>
+
+                <div class="row justifyLeft" id="list-options">
+                    <div class="option selected" id="upcoming-selector">Upcoming events</div>
+                    <div class="option" id="all-selector">All events</div>
+                </div>
+
+                <div class="col list" id="upcoming-list">
+                    {{#each upcomingEvents}}
+                        <div class="item row alignMid" data-id="{{id}}">
+                            <div class="row justifyLeft alignMid item-header">
+                                <div class="label" style="background-color: #{{color}}"></div>
+                                <div class="name">{{name}}</div>
+                            </div>
+                            <hr class="max">
+                            <div class="separator"></div>
+                            <div class="timeframe">{{timeframe}}</div>
+                        </div>
+                    {{else}}
+                        <div class="item-placeholder row alignMid">
+                            No upcoming events.
+                        </div>
+                    {{/each}}                    
+
+                </div>
+
+                <div class="col list hidden" id="all-list">
+
+                    {{#each allEvents}}
+                    <div class="item row alignMid" data-id="{{id}}">
+                        <div class="row justifyLeft alignMid item-header">
+                            <div class="label" style="background-color: #{{color}}"></div>
+                            <div class="name">{{name}}</div>
+                        </div>
+                        <hr class="max">
+                        <div class="separator"></div>
+                        <div class="timeframe">{{timeframe}}</div>
+                    </div>
+                    {{else}}
+                    <div class="item-placeholder row alignMid">
+                        No events.
+                    </div>
+                    {{/each}}
+                
+                </div>
+
+            </div>
+
+            <div class="col section one major justifyLeft" id="sidebar">
+
+                <div id="sidebar-nothinghere">Select an event to see details here</div>
+
+            </div>
+        </div>
+
+        <div style="height: 36px; width: 100%;"></div>
+
+        {{> madewith}}
+    </div>
+</body>
+
+</html>

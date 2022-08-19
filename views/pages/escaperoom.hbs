@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <link href="{{path}}/css/escaperoom.css" rel="stylesheet">
+</head>
+
+<body>
+    {{> snackbar}}
+
+    <script>
+        const index = {{index}}
+    </script>
+
+    <div id="content" class="column">
+        <div class="row" id="top">
+            <div class="header">Spirit Escape Room - Room {{number}}</div>
+        </div>
+
+        <div class="row">
+            {{{rawHTML}}}
+        </div>
+
+        {{{keyHTML}}}
+        {{!-- <div id="submission">
+            <label for="password">Key</label>
+            <input type="text" id="password" name="password"><br><br>
+            <div class="spacer"></div>
+            <button type="submit" id="submit">Submit</button>
+            <div class="spacer"></div>
+        </div> --}}
+        <a href="" id="next">Next URL</a>
+
+        <script>
+            document.getElementById("submit").addEventListener('click', function() {
+                makeRequest("POST", "/escaperoom", {
+                    from: index,
+                    password: document.getElementById("password").value
+                }, function (res) {
+                    try {
+                        const response = JSON.parse(res.responseText)
+                        if (response.success) {
+                            succBar(response.message)
+                            const nextEl = document.getElementById("next")
+                            nextEl.href = response.next
+                            nextEl.style.display = "block"
+                        } else {
+                            errBar(response.message)
+                        }
+                    }
+                    catch (e) {
+                        console.error(res)
+                        errBar("There was an error, please reload")
+                    }
+                })
+            })
+        </script>
+
+        <div style="height: 12px; width: 100%;"></div>
+
+        {{> madewith}}
+    </div>
+</body>
+
+</html>

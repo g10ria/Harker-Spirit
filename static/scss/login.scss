@@ -1,0 +1,21 @@
+@import 'general/main';
+body {
+    margin: 0;
+}
+
+#page-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#login-container {
+    padding: 20px;
+    background-color: $light-gray;
+    .spacer {
+        width: 1px;
+        height: 10px;
+    }
+}

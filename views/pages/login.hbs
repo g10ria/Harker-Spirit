@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <link href="css/login.css" rel="stylesheet">
+    <script src="js/login.js" defer></script>
+</head>
+
+<body>
+    {{> snackbar}}
+    
+    <div id="page-container">
+        <div id="login-container">
+            <div class="header">Harker Spirit Login</div>
+            <form autocomplete="off">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username"><br><br>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"><br><br>
+                <div class="spacer"></div>
+                <button type="submit" id="submit">Log in</button>
+                <div class="spacer"></div>
+            </form>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            {{> madewith}}
+        </div>
+    </div>
+</body>
+
+</html>

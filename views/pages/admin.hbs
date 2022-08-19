@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+    <link href="css/admin.css" rel="stylesheet">
+    <script src="js/overlay.js" defer></script>
+    <script src="js/adminCreate.js" defer></script>
+    <script src="js/adminRanking.js" defer></script>
+    <script src="js/adminLinks.js" defer></script>
+    <script src="js/adminDelete.js" defer></script>
+</head>
+
+<body>
+    {{> snackbar}}
+
+    <div id="tooltip-container">
+        <div id="tooltip">Create new event</div>
+    </div>
+
+    <div id="overlay" class="hidden"></div>
+
+    {{!-- modal for creating a new event --}}
+    <div id="create-container" class="modal-container hidden">
+        <div id="create" class="modal">
+            <div class="modal-header">Create new event</div>
+
+            <label for="create-name">Name</label>
+            <input type="text" maxlength="35" id="create-name" placeholder="Max 35 chars">
+            <br>
+            <label for="create-description">Description</label>
+            <br>
+            <input type="text" maxlength="300" id="create-description" class="big" placeholder="Max 300 chars">
+            <br>
+            <div class="row alignMid justifyLeft">
+                <label for="create-color">Color</label>
+                <input type="color" id="create-color" value="#71B778">
+            </div>
+            <br>
+            <input type="checkbox" id="create-isDateRange">
+            <label for="create-isDateRange">Date Range</label>
+
+            <div id="create-isDateRange-options" class="date-options hidden">
+                <label for="create-startDate" class="date-label">Start date</label>
+                <input type="date" id="create-startDate">
+                <br>
+                <label for="create-endDate" class="date-label">End date</label>
+                <input type="date" id="create-endDate">
+                <br>
+            </div>
+
+            <div id="create-singleDate-options" class="date-options">
+                <label for="create-date">Date</label>
+                <input type="date" id="create-date">
+            </div>
+
+            <br>
+            <button id="create-submit">Submit</button>
+            <span id="create-cancel" class="cancel">Cancel</span>
+        </div>
+    </div>
+
+    {{!-- modal for editing ranking/points of an event --}}
+    <div id="ranking-container" class="modal-container hidden">
+        <div id="ranking" class="modal">
+            <div class="modal-header">Edit event ranking</div>
+
+            <select name="ranking-first" id="ranking-first">
+                <option value="">1st place</option>
+                {{#each classes}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <input type="number" id="ranking-first-points" placeholder="# points">
+            <br>
+            <select name="ranking-second" id="ranking-second">
+                <option value="">2nd place</option>
+                {{#each classes}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <input type="number" id="ranking-second-points" placeholder="# points">
+            <br>
+            <select name="ranking-third" id="ranking-third">
+                <option value="">3rd place</option>
+                {{#each classes}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <input type="number" id="ranking-third-points" placeholder="# points">
+            <br>
+            <select name="ranking-fourth" id="ranking-fourth">
+                <option value="">4th place</option>
+                {{#each classes}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <input type="number" id="ranking-fourth-points" placeholder="# points">
+            <br>
+
+            <br>
+            <button id="ranking-submit">Save changes</button>
+            <button id="ranking-clear" class="red-outline">Clear ranking</button>
+            <span id="ranking-cancel" class="cancel">Cancel</span>
+        </div>
+    </div>
+
+    {{!-- modal for adding/removing links from an event --}}
+    <div id="links-container" class="modal-container hidden">
+        <div id="links" class="modal">
+            <div class="modal-header">Edit event links</div>
+
+            <table id="links-table">
+                <tr>
+                    <th>Class</th>
+                    <th>Link</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>
+                        <a href="">All photos</a>
+                    </td>
+                    <td class="link-delete">Delete</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td><a href="">All photos</a></td>
+                    <td class="link-delete">Delete</td>
+                </tr>
+            </table>
+
+            <br>
+            <br>
+            <div class="links-subheader">Add link</div>
+            <select name="links-class" id="links-class">
+                <option value="">Class</option>
+                {{#each classes}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+                <option value="global">Global</option>
+            </select>
+            <br>
+            <input type="text" maxlength="35" placeholder="Link name" id="links-name">
+            <br>
+            <input type="text" placeholder="Link URL" id="links-url">
+            <br>
+            <button id="links-add-button">+</button>
+
+            <br>
+            <br>
+            <br>
+            <button id="links-submit">Save changes</button>
+            <span id="links-cancel" class="cancel">Cancel</span>
+        </div>
+    </div>
+
+    <div id="content" class="column">
+        <div class="row">
+            <div class="header">Harker Spirit {{yearframe}} - Admin Panel</div>
+            <div id="logout">Logout</div>
+        </div>
+
+        <div class="row" id="sub">
+            <a href="/">Regular view</a>
+        </div>
+
+        {{#each adminEvents}}
+
+        <div class="col top section event justifyLeft">
+            <div class="section1">
+                <div class="row alignMid">
+                    <div class="row justifyLeft alignMid">
+                        <div class="event-label" style="background-color: #{{color}}"></div>
+                        <div class="event-name">
+                            {{name}}
+                        </div>
+                        <div class="event-timeframe">{{dateString}}</div>
+                    </div>
+                    <div>
+                        <div class="event-edit" data-id="{{id}}" data-name="{{name}}" data-description="{{description}}"
+                            data-color="{{color}}" data-isDateRange="{{isDateRange}}" data-dates="{{dates}}">Edit event
+                        </div>
+                        <div class="event-ranking" data-id="{{id}}" data-ranking="{{ranking}}" data-points="{{points}}">
+                            Edit ranking</div>
+                        <div class="event-links" data-id="{{id}}" data-links="{{rawLinks}}" data-names="{{rawNames}}" data-classes="{{rawClasses}}">Edit links</div>
+                    </div>
+                </div>
+
+                <div class="event-description">
+                    {{description}}
+                </div>
+            </div>
+
+            <div class="row justifyLeft">
+                <div class="col two justifyLeft subsection">
+                    <div class="event-ranking-header">
+                        Ranking
+                    </div>
+
+                    <div class="event-ranking-content col">
+                        {{#each rankingStrings}}
+                        <div>{{this}}</div>
+                        {{/each}}
+                        {{#unless rankingStrings}}
+                        No ranking
+                        {{/unless}}
+                    </div>
+
+                </div>
+                <div class="col max justifyLeft subsection">
+                    <div class="event-links-header">
+                        Links
+                    </div>
+                    <div class="event-links-content col">
+
+                        {{#each links}}
+                        <div>
+                            [{{categoryName}}]
+                            {{#each this.links}}
+                            <a target="_blank" href="{{url}}">{{name}}</a>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+                        {{#unless links}}
+                        No links
+                        {{/unless}}
+
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <div class="event-delete" data-id="{{id}}">Delete event</div>
+            </div>
+        </div>
+
+        {{else}}
+        <div id="noevents">
+            No events yet. Click 'Create new event' to create one!
+        </div>
+
+        {{/each}}
+
+
+        {{> madewith}}
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+body {
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+body #content {
+  margin: 50px 65px;
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  body #content {
+    margin: 40px 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  body #content {
+    margin: 30px 15px;
+  }
+}
+
+.header {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+.header2 {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 1.1rem;
+}
+
+.section {
+  background-color: #F3F3F3;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 25px;
+}
+
+#madewith {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 0.9rem;
+  color: #7E7E7E;
+}
+
+#madewith a {
+  color: #7E7E7E;
+}
+
+button {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 1rem;
+  padding: 8px 24px;
+  border: none;
+  outline: none;
+  background-color: #E5E5E5;
+  cursor: pointer;
+  margin: 3px;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: #D6D6D6;
+}
+
+#logout,
+.cancel {
+  color: #71B778;
+  cursor: pointer;
+  text-decoration: underline;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
+#logout:hover,
+.cancel:hover {
+  color: #5b9c62;
+}
+
+#sub {
+  margin-bottom: 18px;
+}
+
+a {
+  color: #71B778;
+}
+
+a:hover {
+  color: #5b9c62;
+}
+
+#snackbar-container {
+  z-index: 5;
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  opacity: 0.85;
+  -webkit-transition: bottom .2s;
+  transition: bottom .2s;
+}
+
+#snackbar-container.hidden {
+  bottom: -100px;
+}
+
+#snackbar-container.success {
+  background-color: #71B778;
+}
+
+#snackbar-container.error {
+  background-color: #f44336;
+}
+
+#snackbar-container #snackbar {
+  text-align: center;
+  padding: 12px 18px;
+  color: white;
+}
+
+label {
+  margin-right: 5px;
+}
+
+input,
+select {
+  outline: none;
+  border: 1px solid #E5E5E5;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+#submission {
+  margin: 18px 0;
+}
+
+#next {
+  display: none;
+}
+
+.block {
+  margin: 12px 0;
+}
+/*# sourceMappingURL=escaperoom.css.map */

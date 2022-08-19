@@ -1,0 +1,258 @@
+@import 'general/main';
+@import 'general/flex';
+#noevents {
+    @include lexend;
+    margin-bottom: 18px;
+}
+
+.event {
+    .section1 {
+        margin-bottom: 18px;
+    }
+    .event-label {
+        width: 18px;
+        height: 18px;
+    }
+    .event-edit,
+    .event-ranking,
+    .event-links {
+        color: $dev-green;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            color: $dark-green;
+        }
+    }
+    .event-name {
+        @include lexend;
+        margin: 0 9px;
+    }
+    .event-ranking-header,
+    .event-links-header {
+        @include lexend;
+        margin-bottom: 6px;
+    }
+    .event-timeframe {
+        @include lexend;
+        color: $dark-gray;
+        @include body2;
+    }
+    .event-description,
+    .event-ranking-content,
+    .event-links-content {
+        @include roboto;
+        @include body2;
+        line-height: 140%;
+    }
+    .event-description {
+        margin-top: 9px;
+    }
+}
+
+.subsection {
+    margin-right: 12px;
+}
+
+.spacer {
+    width: 100%;
+    height: 24px;
+}
+
+.c-2022 {
+    color: $c-green;
+}
+
+#tooltip-container {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    #tooltip {
+        background-color: $dev-green;
+        padding: 15px 25px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 3px 2px 12px $darkish-gray;
+        &:hover {
+            background-color: $dark-green;
+        }
+    }
+}
+
+#overlay {
+    z-index: 2;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.65;
+    transition: opacity 0s;
+    &.hidden {
+        pointer-events: none;
+        opacity: 0;
+    }
+}
+
+.modal-container {
+    z-index: 3;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .2s;
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .modal {
+        background-color: $light-gray;
+        width: 50%;
+        @include breakpoint('mdonly') {
+            width: 60%;
+        }
+        @include breakpoint('smonly') {
+            width: 85%;
+        }
+        box-sizing: border-box;
+        padding: 24px;
+        padding-bottom: 36px;
+        border-radius: 3px;
+        .modal-header {
+            @include lexend;
+            @include header2;
+            margin-bottom: 24px;
+        }
+        label {
+            @include body2;
+        }
+        input {
+            margin-bottom: 24px;
+        }
+        input[type="text"] {
+            @include roboto;
+            &.big {
+                min-width: 50%;
+            }
+            @include breakpoint('smonly') {
+                margin-top: 6px;
+                display: block;
+                width: 95%;
+            }
+        }
+        input[type="checkbox"] {
+            cursor: pointer;
+            background-color: red;
+        }
+        input[type="color"] {
+            margin-bottom: 0;
+            margin-left: 6px;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            border: none;
+            &::-webkit-color-swatch-wrapper {
+                padding: 0;
+            }
+            &::-webkit-color-swatch {
+                border: none;
+                border-radius: 3px;
+            }
+        }
+        .date-label {
+            display: inline-block;
+            width: 80px;
+        }
+    }
+}
+
+.date-options {
+    &.hidden {
+        display: none;
+    }
+}
+
+#create-description {
+    width: 95%;
+    margin-top: 6px;
+}
+
+.cancel {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+button {
+    @include lexend;
+    outline: none;
+    border: none;
+    padding: 10px 25px;
+    background-color: $dev-green;
+    color: $white;
+    cursor: pointer;
+    &:hover {
+        background-color: $dark-green;
+    }
+}
+
+button.red-outline {
+    background-color: transparent;
+    border: 1px solid $error;
+    color: $error;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+#links {
+    table {
+        width: 100%;
+        th {
+            text-align: left;
+        }
+        .link-delete {
+            color: $error;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    #links-add-button {
+        color: $dev-green;
+        background-color: transparent;
+        border: 1px solid $dev-green;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    select,
+    input {
+        margin-bottom: 6px;
+    }
+    #links-url {
+        min-width: 85%;
+    }
+    .links-subheader {
+        @include lexend;
+        margin-bottom: 12px;
+    }
+}
+
+.event-delete {
+    cursor: pointer;
+    display: inline-block;
+    color: $error;
+    opacity: 0.8;
+    @include lexend;
+    @include body3;
+    margin-top: 24px;
+    &:hover {
+        text-decoration: underline;
+    }
+}
